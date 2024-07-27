@@ -195,6 +195,9 @@
                 </fieldset>
                 <x-primary-button><a href="{{ route('admin.export.word', $pemohon->id) }}"> Export ke
                         Word</a></x-primary-button>
+
+                <x-danger-button><a href="{{ route('admin.tableKoneksi') }}"> Kembali
+                        </a></x-danger-button>
         </x-card>
     </div>
 </x-app-layout>

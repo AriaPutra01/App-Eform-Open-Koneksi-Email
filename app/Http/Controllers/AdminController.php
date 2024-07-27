@@ -11,15 +11,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AdminController extends Controller
 {
-    /**
-     * index
-     *
-     * @return void
-     */
-    public function index()
-    {
-
-    }
 
     public function tableKoneksi()
     {

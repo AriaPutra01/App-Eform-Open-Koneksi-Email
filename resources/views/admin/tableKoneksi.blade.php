@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-center font-semibold text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Data Form pemohon') }}
         </h2>
     </x-slot>
@@ -35,31 +35,34 @@
                             <td class="px-6 py-4">{{ $p->grup }}</td>
                             <td class="px-6 py-4">{{ $p->mulai }}</td>
                             <td class="px-6 py-4">{{ $p->sampai }}</td>
+
+
                             <td class="px-6 py-4 text-center">
                                 <a href="{{ route('admin.dataKoneksi.show', $p->id) }}"
                                     class="m-2 inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">SHOW</a>
                                 <x-danger-button x-data=""
-                                    x-on:click.prevent="$dispatch('open-modal', 'konfirmasiHapusPemohon')">{{ __('Hapus') }}</x-danger-button>
-                                <x-modal name="konfirmasiHapusPemohon" focusable>
-                                    <form method="POST" action="{{ route('admin.dataKoneksi.destroy', $p->id) }}" class="p-6">
-                                        @csrf
-                                        @method('DELETE')
-                                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                            {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
-                                        </h2>
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
-                                        </p>
-                                        <div class="mt-6 flex justify-end">
-                                            <x-secondary-button x-on:click="$dispatch('close')">
-                                                {{ __('Membatalkan') }}
-                                            </x-secondary-button>
-                                            <x-danger-button class="ms-3">
-                                                {{ __('Hapus Data') }}
-                                            </x-danger-button>
-                                        </div>
-                                    </form>
-                                </x-modal>
+                                    x-on:click.prevent="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $p->id }}')">{{ __('Hapus') }}</x-danger-button>
+                                    <x-modal name="konfirmasiHapusPemohon-{{ $p->id }}" focusable>
+                                        <form method="POST" action="{{ route('admin.dataKoneksi.destroy', $p->id) }}" class="p-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
+                                            </h2>
+                                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                                {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
+                                            </p>
+                                            <div class="mt-6 flex justify-end">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    {{ __('Membatalkan') }}
+                                                </x-secondary-button>
+                                                <x-danger-button type="submit">
+                                                    {{ __('Hapus Data') }}
+                                                </x-danger-button>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+
                             </td>
                         </tr>
                     @empty

@@ -132,6 +132,12 @@ class AdminEmailController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Permohonan::findOrFail($id);
+
+        //delete post
+        $post->delete();
+
+        //redirect to index
+        return redirect('adminEmail/tableEmail')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

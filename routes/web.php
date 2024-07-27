@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
@@ -28,8 +28,7 @@ Route::group(['prefix' => 'pemohon', 'as' => 'pemohon.'], function () {
 });
 
 Route::group(['prefix' => 'permohonan', 'as' => 'permohonan.'], function () {
-    Route::resource('/formEmail', PermohonanController::class);
-    Route::get('/form-email/export/{file}', 'PermohonanController@exportWord')->name('permohonan.formEmail.export');
+    Route::resource('/formEmail', EmailController::class);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -42,12 +41,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'adminEmail', 'as' => 'adminEmail.'], function () {
     Route::resource('/dataEmail', AdminEmailController::class);
     Route::get('/export-excel', [AdminEmailController::class, 'export'])->name('export.excel');
-    Route::delete('/adminEmail/dataEmail/destroy/{id}', [AdminEmailController::class, 'destroy'])->name('admin.dataEmail.destroy');
-    // routes/web.php
-    // Route::delete('/adminEmail/dataEmail/destroy/{id}', [AdminEmailController::class, 'destroy'])->name('admin.dataEmail.destroy');
-    // Route::get('/adminEmail/{id}', ['AdminController@destroy'])->name('adminEmail.dataEmail.destroy');
-    // Route::get('/dataEmail/{id}/export-word', [WordExport::class, 'export'])->name('export.word');
-    Route::post('/word/{id}', [PermohonanController::class, 'word'])->name('word');
+    Route::get('/word/{id}', [AdminEmailController::class, 'word'])->name('word');
     Route::get('/tableEmail', [AdminEmailController::class, 'tableEmail'])->name('tableEmail');
 });
 

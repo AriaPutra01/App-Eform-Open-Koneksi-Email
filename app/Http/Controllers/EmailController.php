@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\PDF;
 use App\Models\Permohonan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
-use PhpOffice\PhpWord\TemplateProcessor;
 
-class PermohonanController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +17,7 @@ class PermohonanController extends Controller
         return view('dashboard', compact('posts'));
     }
 
-    public function word(Request $request, $id)
-    {
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -63,15 +57,12 @@ class PermohonanController extends Controller
 
             // Simpan data ke dalam database
             if ($data->save()) {
-                // Data saved successfully, redirect to dashboard
-                return redirect()->route('dashboard');
+                // Redirect ke halaman yang diinginkan dengan pesan sukses
+                return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
             } else {
                 // Data not saved, display error message
                 return back()->withErrors($data->errors());
             }
-
-            // Redirect ke halaman yang diinginkan dengan pesan sukses
-            return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
         } elseif ($request->has('exportPdf')) {
             $nama = $request->nama;
             $nama_ibu = $request->nama_ibu;
@@ -93,47 +84,12 @@ class PermohonanController extends Controller
                 'pendaftaran' => $pendaftaran,
             ]);
 
-            $temp_file = tempnam(sys_get_temp_dir(), 'Permohonan');
+            $temp_file = tempnam(sys_get_temp_dir(), 'Permohonan '. $request['nama']) . '.docx';
             $phpWord->saveAs($temp_file);
 
-            return response()->download($temp_file, 'Permohonan.docx', [
+            return response()->download($temp_file, 'Permohonan '. $request['nama'].'.docx', [
                 'Content-Type' => 'application/msword',
             ])->deleteFileAfterSend(true);
         }
-    }
-
-    /**
-     * show
-     *
-     * @param  mixed $id
-     * @return View
-     */
-    public function show(string $id)
-    {
-        //get post by ID
-        $post = Permohonan::findOrFail($id);
-        //render view with post
-        return view('admin.show', compact('post'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    /**
-     * destroy
-     *
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
-    public function destroy($id): RedirectResponse
-    {
-        //get post by ID
-        $post = Permohonan::findOrFail($id);
-
-        //delete post
-        $post->delete();
-
-        //redirect to index
-        return redirect('admin/dashboard')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

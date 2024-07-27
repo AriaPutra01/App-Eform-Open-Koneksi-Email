@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>eform - bank bjb</title>
+    {{-- icon --}}
+    <link rel="icon" href="{{ asset('build/image/logobjb.png') }}">
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,84 +43,111 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 </head>
 
-<body>
+<body x-data="modalHandler">
 
     <x-app-layout>
 
-    <x-card>
-        <div class="card-header">
-            <h3 class="card-title">Data Permohonan Pengajuan Dan Penghapusan Email</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            {{-- <center>
+        <x-slot name="header">
+            <h2 class="text-center font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Data Form pemohon') }}
+            </h2>
+        </x-slot>
+
+        <x-card>
+            <div class="card-header">
+                <h3 class="card-title">Data Permohonan Pengajuan Dan Penghapusan Email</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                {{-- <center>
                 <a href="{{ url('admin/create') }}" class="btn btn-md btn-primary mb-3">Buat Permohonan</a>
                 <a href="/pegawai/cetak_pdf" class="btn btn-md btn-primary mb-3" target="_blank">CETAK PDF</a>
             </center> --}}
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Nama ibu</th>
-                        <th>Cabang</th>
-                        <th>Jabatan</th>
-                        <th>No telp</th>
-                        <th>Alasan</th>
-                        <th>Pendaftaran</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($posts as $post)
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $post->nama }}</td>
-                            <td>{{ $post->nama_ibu }}</td>
-                            <td>{{ $post->cabang }}</td>
-                            <td>{{ $post->jabatan }}</td>
-                            <td>{{ $post->no_telp }}</td>
-                            <td>{{ $post->alasan }}</td>
-                            <td>{{ $post->pendaftaran }}</td>
-
-                            <td class="text-center">
-                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                    action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}" method="POST">
-                                    <a href="{{ route('adminEmail.dataEmail.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                </form>
-                            </td>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Nama ibu</th>
+                            <th>Cabang</th>
+                            <th>Jabatan</th>
+                            <th>No telp</th>
+                            <th>Alasan</th>
+                            <th>Pendaftaran</th>
+                            <th>Action</th>
                         </tr>
-                    @empty
-                        <div class="alert alert-danger">
-                            Data Post belum Tersedia.
-                        </div>
-                    @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Nama ibu</th>
-                        <th>Cabang</th>
-                        <th>Jabatan</th>
-                        <th>No telp</th>
-                        <th>Alasan</th>
-                        <th>Pendaftaran</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <!-- /.card-body -->
-    </x-card>
+                    </thead>
+                    <tbody>
+                        @forelse ($posts as $post)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $post->nama }}</td>
+                                <td>{{ $post->nama_ibu }}</td>
+                                <td>{{ $post->cabang }}</td>
+                                <td>{{ $post->jabatan }}</td>
+                                <td>{{ $post->no_telp }}</td>
+                                <td>{{ $post->alasan }}</td>
+                                <td>{{ $post->pendaftaran }}</td>
 
-</x-app-layout>
+                                <td class="text-center">
+
+                                    <a href="{{ route('adminEmail.dataEmail.show', $post->id) }}"
+                                        class="m-2 inline-block bg-gray-500 hover:bg-gray-700 text-white py-1 px-4 rounded">SHOW</a>
+                                    <button @click="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $post->id }}')"
+                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        {{ __('Hapus') }}
+                                    </button>
+                                    <x-modal name="konfirmasiHapusPemohon-{{ $post->id }}" focusable>
+                                        <form method="POST" action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}" class="p-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
+                                            </h2>
+                                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                                {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
+                                            </p>
+                                            <div class="mt-6 flex justify-end">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    {{ __('Membatalkan') }}
+                                                </x-secondary-button>
+                                                <x-danger-button type="submit">
+                                                    {{ __('Hapus Data') }}
+                                                </x-danger-button>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                                </td>
+                            </tr>
+                        @empty
+                            <div class="alert alert-danger">
+                                Data Post belum Tersedia.
+                            </div>
+                        @endforelse
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Nama ibu</th>
+                            <th>Cabang</th>
+                            <th>Jabatan</th>
+                            <th>No telp</th>
+                            <th>Alasan</th>
+                            <th>Pendaftaran</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </x-card>
+
+    </x-app-layout>
     <!-- /.card -->
 
     <!-- jQuery -->
@@ -182,70 +211,91 @@
     <script src="{{ asset('lte/plugins/chart.js/Chart.bundle.min.js') }}"></script>
 
     <script>
-$(function() {
-  // Create button with flexibility for custom URL and text
-  var createButtonUrl = "{{ route('adminEmail.dataEmail.create') }}"; // Replace with your actual URL
-  var createButtonText = "Create"; // Customize text as needed
-  var createButton =
-    `<a href="${createButtonUrl}" class="btn btn-md btn-primary">${createButtonText}</a>`;
+        $(function() {
+            // Create button with flexibility for custom URL and text
+            var createButtonUrl = "{{ route('adminEmail.dataEmail.create') }}"; // Replace with your actual URL
+            var createButtonText = "Create"; // Customize text as needed
+            var createButton =
+                `<a href="${createButtonUrl}" class="btn btn-md btn-primary">${createButtonText}</a>`;
 
-  console.log("Create button HTML:", createButton); // Log the button HTML to the console
+            console.log("Create button HTML:", createButton); // Log the button HTML to the console
 
-  // Prepend create button with error handling for non-existent element
-  var container = $('#example1_wrapper .col-md-6:eq(0)');
-  console.log("Container element:", container); // Log the container element to the console
+            // Prepend create button with error handling for non-existent element
+            var container = $('#example1_wrapper .col-md-6:eq(0)');
+            console.log("Container element:", container); // Log the container element to the console
 
-  if (container.length > 0) {
-    container.prepend(createButton);
-    console.log("Button prepended to container!"); // Log a success message
-  } else {
-    console.warn("Create button container not found. Consider adjusting the selector.");
-  }
+            if (container.length > 0) {
+                container.prepend(createButton);
+                console.log("Button prepended to container!"); // Log a success message
+            } else {
+                console.warn("Create button container not found. Consider adjusting the selector.");
+            }
 
-  // Initialize DataTables with enhancements
-  $("#example1").DataTable({
-    "responsive": true,
-    "lengthChange": false,
-    "autoWidth": false,
-    "buttons": [
-      {
-        "extend": 'copy',
-        "exportOptions": {
-          "columns": [1, 2, 3, 4, 5, 6, 7] // Export only "Nama" column (adjust as needed)
-        }
-      },
-      {
-        "extend": 'excel',
-        "exportOptions": {
-          "columns": [1, 2, 3, 4, 5, 6, 7] // Export all visible columns (more flexible)
-        }
-      },
-      {
-        "extend": 'print',
-        "exportOptions": {
-          "columns": [1, 2, 3, 4, 5, 6, 7] // Export all visible columns (more flexible)
-        }
-      },
-      'colvis' // Include column visibility toggle
-    ]
-  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            // Initialize DataTables with enhancements
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        "extend": 'copy',
+                        "exportOptions": {
+                            "columns": [1, 2, 3, 4, 5, 6,
+                                7] // Export only "Nama" column (adjust as needed)
+                        }
+                    },
+                    {
+                        "extend": 'excel',
+                        "exportOptions": {
+                            "columns": [1, 2, 3, 4, 5, 6,
+                                7] // Export all visible columns (more flexible)
+                        }
+                    },
+                    {
+                        "extend": 'print',
+                        "exportOptions": {
+                            "columns": [1, 2, 3, 4, 5, 6,
+                                7] // Export all visible columns (more flexible)
+                        }
+                    },
+                    'colvis' // Include column visibility toggle
+                ]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-  // Add create button to DataTables buttons container
-  var buttonsContainer = $('#example1_wrapper .col-md-6:eq(0) .dt-buttons');
-  console.log("Buttons container element:", buttonsContainer); // Log the buttons container element to the console
-  buttonsContainer.prepend(createButton);
+            // Add create button to DataTables buttons container
+            var buttonsContainer = $('#example1_wrapper .col-md-6:eq(0) .dt-buttons');
+            console.log("Buttons container element:",
+            buttonsContainer); // Log the buttons container element to the console
+            buttonsContainer.prepend(createButton);
 
-  // Initialize DataTables for #example2 (consider combining for efficiency)
-  $("#example2").DataTable({
-    "paging": true,
-    "lengthChange": false,
-    "searching": false,
-    "ordering": true,
-    "info": false,
-    "autoWidth": false,
-    "responsive": true
-  });
-});
+            // Initialize DataTables for #example2 (consider combining for efficiency)
+            $("#example2").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('modalHandler', () => ({
+                showModal: false,
+                openModal(modalName) {
+                    this.showModal = true;
+                    this.$nextTick(() => {
+                        this.$refs[modalName].showModal();
+                    });
+                },
+                closeModal(modalName) {
+                    this.$refs[modalName].close();
+                    this.showModal = false;
+                }
+            }));
+        });
     </script>
 
 </body>
