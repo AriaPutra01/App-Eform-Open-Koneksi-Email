@@ -12,20 +12,14 @@ use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
-    {
-        return view('dashboardAdmin');
-    }
 
     /**
      * Display a listing of the resource.
      */
     public function indexUser(): View
     {
-        return view('dashboard');
+        $pemohons = Pemohon::latest()->paginate(10);
+        return view('admin.tableKoneksi', compact("pemohons"));
     }
 
     /**

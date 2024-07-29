@@ -9,7 +9,7 @@
     <title>eform - bank bjb</title>
 
     {{-- icon --}}
-    <link rel="icon" href="{{asset('build/image/logobjb.png')}}">
+    <link rel="icon" href="{{ asset('build/image/logobjb.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,12 +20,12 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white dark:bg-gray-800 shadow">
+            <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -76,9 +76,9 @@
                 newIpSourceInput.type = 'text';
                 newIpSourceInput.name = 'ipSource[]';
                 newIpSourceInput.id = 'ipSource';
-                newIpSourceInput.classList.add('block','w-full','mt-5','border-gray-300', 'dark:border-gray-700',
-                    'dark:bg-gray-900', 'dark:text-gray-300', 'focus:border-sky-500',
-                    'dark:focus:border-sky-600', 'focus:ring-sky-500', 'dark:focus:ring-sky-600',
+                newIpSourceInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
+                    'focus:border-sky-500',
+                    'focus:ring-sky-500',
                     'rounded-md', 'shadow-sm'
                 );
                 ipSourceContainer.appendChild(newIpSourceInput);
@@ -88,9 +88,9 @@
                 newIpDestinationInput.type = 'text';
                 newIpDestinationInput.name = 'ipDestination[]';
                 newIpDestinationInput.id = 'ipDestination';
-                newIpDestinationInput.classList.add('block','w-full','mt-5','border-gray-300', 'dark:border-gray-700',
-                    'dark:bg-gray-900', 'dark:text-gray-300', 'focus:border-sky-500',
-                    'dark:focus:border-sky-600', 'focus:ring-sky-500', 'dark:focus:ring-sky-600',
+                newIpDestinationInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
+                    'focus:border-sky-500',
+                    'focus:ring-sky-500',
                     'rounded-md', 'shadow-sm'
                 );
                 ipDestinationContainer.appendChild(newIpDestinationInput);
@@ -100,9 +100,9 @@
                 newPortInput.type = 'number';
                 newPortInput.name = 'port[]';
                 newPortInput.id = 'port';
-                newPortInput.classList.add('block','w-full','mt-5','border-gray-300', 'dark:border-gray-700', 'dark:bg-gray-900',
-                    'dark:text-gray-300', 'focus:border-sky-500', 'dark:focus:border-sky-600',
-                    'focus:ring-sky-500', 'dark:focus:ring-sky-600', 'rounded-md', 'shadow-sm'
+                newPortInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
+                    'focus:border-sky-500',
+                    'focus:ring-sky-500', 'rounded-md', 'shadow-sm'
                 );
                 portContainer.appendChild(newPortInput);
             });

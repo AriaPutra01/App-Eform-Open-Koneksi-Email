@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-center font-semibold text-xl text-gray-800 leading-tight">
             Detail Data <i class="text-blue-500">{{ $pemohon->nama }}</i>
         </h2>
     </x-slot>
@@ -8,16 +8,15 @@
         <x-card>
 
             <div class="col-span-full">
-                <x-input-label class="text-base font-semibold leading-7 text-gray-900 dark:text-white"
-                    :value="__('Tujuan Pengajuan')" />
+                <x-input-label class="text-base font-semibold leading-7 text-gray-900" :value="__('Tujuan Pengajuan')" />
                 <textarea disabled rows="3"
-                    class="mt-3 block w-full border-1 py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-sky-500 dark:focus:border-sky-600 focus:ring-sky-500 dark:focus:ring-sky-600 rounded-md shadow-sm">{{ $pemohon->tujuan }}</textarea>
+                    class="mt-3 block w-full border-1 py-1.5 border-gray-300 focus:border-sky-500 focus:ring-sky-500 rounded-md shadow-sm">{{ $pemohon->tujuan }}</textarea>
             </div>
         </x-card>
         <x-card>
 
-            <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Data Pemohon</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Data pribadi pemohon</p>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Data Pemohon</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">Data pribadi pemohon</p>
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                     <x-input-label :value="__('Nama Lengkap')" />
@@ -48,48 +47,44 @@
         </x-card>
         <x-card>
 
-            <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Informasi Koneksi</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Detail pengajuan koneksi
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Informasi Koneksi</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">Detail pengajuan koneksi
             </p>
             <div class="my-10 space-y-10">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <fieldset class="sm:col-span-3">
-                        <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">
+                        <legend class="text-sm font-semibold leading-6 text-gray-900">
                             Kebutuhan Akses</legend>
                         <div class="mt-6 space-y-6">
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="production"
                                     {{ $pemohon->kebutuhan == 'production' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Production</label>
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Production</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="development"
                                     {{ $pemohon->kebutuhan == 'development' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Development</label>
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Development</label>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset class="sm:col-span-3">
-                        <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Akses
+                        <legend class="text-sm font-semibold leading-6 text-gray-900">Akses
                             Koneksi</legend>
                         <div class="mt-6 space-y-6">
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="internal"
                                     {{ $pemohon->akses == 'internal' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Internal</label>
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Internal</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="pihakKetiga"
                                     {{ $pemohon->akses == 'pihakKetiga' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pihak
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Pihak
                                     Ketiga</label>
                             </div>
                         </div>
@@ -135,60 +130,56 @@
             </div>
             <div class="my-10 space-y-10">
                 <fieldset>
-                    <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400"><i>Initiate
+                    <legend class="text-sm font-semibold leading-6 text-gray-900"><i>Initiate
                             Connection</i>
                     </legend>
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="flex items-center gap-x-3">
                             <input disabled type="radio" value="Bank bjb"
                                 {{ $pemohon->initiateConnection == 'Bank bjb' ? 'checked' : '' }}
-                                class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                            <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">bank
+                                class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                            <label class="block text-sm font-medium leading-6 text-gray-900">bank
                                 bjb</label>
                         </div>
                         <div class="flex items-center gap-x-3">
                             <input disabled type="radio" value="Pihak Ketiga"
                                 {{ $pemohon->initiateConnection == 'Pihak Ketiga' ? 'checked' : '' }}
-                                class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                            <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pihak
+                                class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                            <label class="block text-sm font-medium leading-6 text-gray-900">Pihak
                                 Ketiga</label>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset>
-                    <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Lampiran
+                    <legend class="text-sm font-semibold leading-6 text-gray-900">Lampiran
                     </legend>
                     <div class="mt-6 space-y-6">
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="Topology Aplikasi"
                                     {{ $pemohon->lampiran == 'Topology Aplikasi' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Topology
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Topology
                                     Aplikasi</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="Perjanjian Kerjasama"
                                     {{ $pemohon->lampiran == 'Perjanjian Kerjasama' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Perjanjian
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Perjanjian
                                     Kerjasama</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="BRD"
                                     {{ $pemohon->lampiran == 'BRD' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">BRD</label>
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">BRD</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input disabled type="radio" value="Lainnya"
                                     {{ $pemohon->lampiran == 'Lainnya' ? 'checked' : '' }}
-                                    class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Lainnya.....</label>
+                                    class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                <label class="block text-sm font-medium leading-6 text-gray-900">Lainnya.....</label>
                             </div>
                         </div>
                     </div>
@@ -197,7 +188,7 @@
                         Word</a></x-primary-button>
 
                 <x-danger-button><a href="{{ route('admin.tableKoneksi') }}"> Kembali
-                        </a></x-danger-button>
+                    </a></x-danger-button>
         </x-card>
     </div>
 </x-app-layout>

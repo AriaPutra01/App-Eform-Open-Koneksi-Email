@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-center font-semibold text-xl text-gray-800 leading-tight">
             Detail Data <i class="text-blue-500">{{ $post->nama }}</i>
         </h2>
     </x-slot>
@@ -8,8 +8,8 @@
 
         <x-card>
 
-            <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Data Pemohon</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Data pribadi pemohon</p>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Data Pemohon</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">Data pribadi pemohon</p>
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                 <div class="sm:col-span-3">
@@ -35,7 +35,7 @@
                 <div class="sm:col-span-6">
                     <x-input-label :value="__('Alasan')" />
                     <textarea disabled rows="3"
-                        class="mt-3 block w-full border-1 py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-sky-500 dark:focus:border-sky-600 focus:ring-sky-500 dark:focus:ring-sky-600 rounded-md shadow-sm">{{ $post->alasan }}</textarea>
+                        class="mt-3 block w-full border-1 py-1.5 border-gray-300 focus:border-sky-500 focus:ring-sky-500rounded-md shadow-sm">{{ $post->alasan }}</textarea>
                 </div>
                 <div class="sm:col-span-3">
                     <x-input-label :value="__('Pendaftaran')" />

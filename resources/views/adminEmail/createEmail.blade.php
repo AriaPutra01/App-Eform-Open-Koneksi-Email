@@ -24,7 +24,7 @@
         <main>
 
             <x-slot name="header">
-                <h2 class="text-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                <h2 class="text-center font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('Buat Data Pemohon') }}
                 </h2>
             </x-slot>
@@ -33,33 +33,33 @@
                 <div class="space-y-12" style="padding-bottom: 3rem">
                     <x-card>
 
-                        <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Data Pemohon</h2>
-                        <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Data pribadi pemohon</p>
+                        <h2 class="text-base font-semibold leading-7 text-gray-900">Data Pemohon</h2>
+                        <p class="mt-1 text-sm leading-6 text-gray-600">Data pribadi pemohon</p>
                         <fieldset style="margin-top: 2rem;">
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Jenis
+                            <legend class="text-sm font-semibold leading-6 text-gray-900">Jenis
                                 Permohonan
                             </legend>
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div class="flex items-center gap-x-3">
                                     <input id="pendaftaran" name="pendaftaran" type="radio" value="Pendaftaran"
                                         {{ old('initiateConnection') == 'Pendaftaran' ? 'checked' : '' }}
-                                        class="h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="pendaftaran"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pendafaran</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Pendafaran</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="pengaktifan" name="pendaftaran" type="radio" value="Pengaktifan"
                                         {{ old('initiateConnection') == 'Pengaktifan' ? 'checked' : '' }}
-                                        class="@error('initiateConnection') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('initiateConnection') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="pengaktifan"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pengaktifan</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Pengaktifan</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="pendafatran" name="pendaftaran" type="radio" value="Penghapusan"
                                         {{ old('initiateConnection') == 'Penghapusan' ? 'checked' : '' }}
-                                        class="@error('initiateConnection') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('initiateConnection') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="penghapusan"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Penghapusan</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Penghapusan</label>
                                 </div>
                             </div>
                             <x-input-error :messages="$errors->get('initiateConnection')" class="mt-2" />
@@ -87,7 +87,7 @@
                             <div class="sm:col-span-3">
                                 <x-input-label for="jabatan" :value="'Jabatan'" />
                                 <select id="countries"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     id="jabatan" name="jabatan">
                                     <option value="">Pilih Jabatan Anda</option>
                                     <option value="Teller" {{ old('jabatan') == 'Teller' ? 'selected' : '' }}>Teller
@@ -132,16 +132,16 @@
                     <x-card>
 
                         <div class="col-span-full">
-                            <x-input-label class="text-base font-semibold leading-7 text-gray-900 dark:text-white"
-                                for="alasan" :value="'Alasan'" />
+                            <x-input-label class="text-base font-semibold leading-7 text-gray-900" for="alasan"
+                                :value="'Alasan'" />
                             <textarea id="alasan" name="alasan" rows="3"
-                                class="mt-3 block w-full border-1 py-1.5 border-gray-300 dark:border-gray-700  dark:bg-gray-900 dark:text-gray-300 focus:border-sky-500 dark:focus:border-sky-600 focus:ring-sky-500 dark:focus:ring-sky-600 rounded-md shadow-sm"
+                                class="mt-3 block w-full border-1 py-1.5 border-gray-300 focus:border-sky-50 rounded-md shadow-sm"
                                 placeholder="Masukan Alasan Anda">{{ old('alasan') }}</textarea>
                             <x-input-error :messages="$errors->get('alasan')" class="mt-2" />
                         </div>
                         <div class="mt-6 flex items-center justify-end gap-x-6">
                             <button type="reset"
-                                class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Reset</button>
+                                class="text-sm font-semibold leading-6 text-gray-900">Reset</button>
 
                             <x-primary-button>{{ __('Kirim') }}</x-primary-button>
 

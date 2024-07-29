@@ -52,7 +52,7 @@
     <x-app-layout>
 
         <x-slot name="header">
-            <h2 class="text-center font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="text-center font-semibold text-gray-800 leading-tight">
                 {{ __('Data Form pemohon') }}
             </h2>
         </x-slot>
@@ -97,18 +97,21 @@
 
                                     <a href="{{ route('adminEmail.dataEmail.show', $post->id) }}"
                                         class="m-2 inline-block bg-gray-500 hover:bg-gray-700 text-white py-1 px-4 rounded">SHOW</a>
-                                    <button @click="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $post->id }}')"
+                                    <button
+                                        @click="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $post->id }}')"
                                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                         {{ __('Hapus') }}
                                     </button>
                                     <x-modal name="konfirmasiHapusPemohon-{{ $post->id }}" focusable>
-                                        <form method="POST" action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}" class="p-6">
+                                        <form method="POST"
+                                            action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}"
+                                            class="p-6">
                                             @csrf
                                             @method('DELETE')
-                                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                            <h2 class="text-lg font-medium text-gray-900">
                                                 {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
                                             </h2>
-                                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            <p class="mt-1 text-sm text-gray-600">
                                                 {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
                                             </p>
                                             <div class="mt-6 flex justify-end">
@@ -240,21 +243,24 @@
                         "extend": 'copy',
                         "exportOptions": {
                             "columns": [1, 2, 3, 4, 5, 6,
-                                7] // Export only "Nama" column (adjust as needed)
+                                7
+                            ] // Export only "Nama" column (adjust as needed)
                         }
                     },
                     {
                         "extend": 'excel',
                         "exportOptions": {
                             "columns": [1, 2, 3, 4, 5, 6,
-                                7] // Export all visible columns (more flexible)
+                                7
+                            ] // Export all visible columns (more flexible)
                         }
                     },
                     {
                         "extend": 'print',
                         "exportOptions": {
                             "columns": [1, 2, 3, 4, 5, 6,
-                                7] // Export all visible columns (more flexible)
+                                7
+                            ] // Export all visible columns (more flexible)
                         }
                     },
                     'colvis' // Include column visibility toggle
@@ -264,7 +270,7 @@
             // Add create button to DataTables buttons container
             var buttonsContainer = $('#example1_wrapper .col-md-6:eq(0) .dt-buttons');
             console.log("Buttons container element:",
-            buttonsContainer); // Log the buttons container element to the console
+                buttonsContainer); // Log the buttons container element to the console
             buttonsContainer.prepend(createButton);
 
             // Initialize DataTables for #example2 (consider combining for efficiency)

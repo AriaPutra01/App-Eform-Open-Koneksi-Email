@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-center font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Buat Data Pemohon') }}
         </h2>
     </x-slot>
@@ -10,17 +10,17 @@
             <x-card>
 
                 <div class="col-span-full">
-                    <x-input-label class="text-base font-semibold leading-7 text-gray-900 dark:text-white" for="tujuan"
+                    <x-input-label class="text-base font-semibold leading-7 text-gray-900 " for="tujuan"
                         :value="__('Tujuan Pengajuan')" />
                     <textarea id="tujuan" name="tujuan" rows="3"
-                        class="mt-3 block w-full border-1 py-1.5 border-gray-300 dark:border-gray-700  dark:bg-gray-900 dark:text-gray-300 focus:border-sky-500 dark:focus:border-sky-600 focus:ring-sky-500 dark:focus:ring-sky-600 rounded-md shadow-sm">{{ old('tujuan') }}</textarea>
+                        class="mt-3 block w-full border-1 py-1.5 border-gray-300 focus:border-sky-500 focus:ring-sky-500 rounded-md shadow-sm">{{ old('tujuan') }}</textarea>
                     <x-input-error :messages="$errors->get('tujuan')" class="mt-2" />
                 </div>
             </x-card>
             <x-card>
 
-                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Data Pemohon</h2>
-                <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Data pribadi pemohon</p>
+                <h2 class="text-base font-semibold leading-7 text-gray-900 ">Data Pemohon</h2>
+                <p class="mt-1 text-sm leading-6 text-gray-600">Data pribadi pemohon</p>
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-3">
                         <x-input-label for="nama" :value="__('Nama Lengkap')" />
@@ -56,49 +56,49 @@
             </x-card>
             <x-card>
 
-                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Informasi Koneksi</h2>
-                <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Detail pengajuan koneksi
+                <h2 class="text-base font-semibold leading-7 text-gray-900 ">Informasi Koneksi</h2>
+                <p class="mt-1 text-sm leading-6 text-gray-600">Detail pengajuan koneksi
                 </p>
                 <div class="my-10 space-y-10">
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <fieldset class="sm:col-span-3">
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">
+                            <legend class="text-sm font-semibold leading-6 text-gray-900">
                                 Kebutuhan Akses</legend>
                             <div class="mt-6 space-y-6">
                                 <div class="flex items-center gap-x-3">
                                     <input id="production" name="kebutuhan" type="radio" value="production"
                                         {{ old('kebutuhan') == 'production' ? 'checked' : '' }}
-                                        class="@error('kebutuhan') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('kebutuhan') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="production"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Production</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Production</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="development" name="kebutuhan" type="radio" value="development"
                                         {{ old('kebutuhan') == 'development' ? 'checked' : '' }}
-                                        class="@error('kebutuhan') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('kebutuhan') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="development"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Development</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Development</label>
                                 </div>
                             </div>
                             <x-input-error :messages="$errors->get('kebutuhan')" class="mt-2" />
                         </fieldset>
                         <fieldset class="sm:col-span-3">
-                            <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Akses
+                            <legend class="text-sm font-semibold leading-6 text-gray-900">Akses
                                 Koneksi</legend>
                             <div class="mt-6 space-y-6">
                                 <div class="flex items-center gap-x-3">
                                     <input id="internal" name="akses" type="radio" value="internal"
                                         {{ old('akses') == 'internal' ? 'checked' : '' }}
-                                        class="@error('akses') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('akses') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="internal"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Internal</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Internal</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="pihakKetiga" name="akses" type="radio" value="pihakKetiga"
                                         {{ old('akses') == 'pihakKetiga' ? 'checked' : '' }}
-                                        class="@error('akses') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('akses') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="pihakKetiga"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pihak
+                                        class="block text-sm font-medium leading-6 text-gray-900">Pihak
                                         Ketiga</label>
                                 </div>
                             </div>
@@ -155,32 +155,32 @@
                 </div>
                 <div class="my-10 space-y-10">
                     <fieldset>
-                        <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400"><i>Initiate
+                        <legend class="text-sm font-semibold leading-6 text-gray-900"><i>Initiate
                                 Connection</i>
                         </legend>
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="flex items-center gap-x-3">
                                 <input id="bankBjb" name="initiateConnection" type="radio" value="Bank bjb"
                                     {{ old('initiateConnection') == 'Bank bjb' ? 'checked' : '' }}
-                                    class="@error('initiateConnection') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                    class="@error('initiateConnection') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                 <label for="bank bjb"
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">bank
+                                    class="block text-sm font-medium leading-6 text-gray-900">bank
                                     bjb</label>
                             </div>
                             <div class="flex items-center gap-x-3">
                                 <input id="pihakKetiga" name="initiateConnection" type="radio"
                                     value="Pihak Ketiga"
                                     {{ old('initiateConnection') == 'Pihak Ketiga' ? 'checked' : '' }}
-                                    class="@error('initiateConnection') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                    class="@error('initiateConnection') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                 <label for="pihakKetiga"
-                                    class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Pihak
+                                    class="block text-sm font-medium leading-6 text-gray-900">Pihak
                                     Ketiga</label>
                             </div>
                         </div>
                         <x-input-error :messages="$errors->get('initiateConnection')" class="mt-2" />
                     </fieldset>
                     <fieldset>
-                        <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Lampiran
+                        <legend class="text-sm font-semibold leading-6 text-gray-900">Lampiran
                         </legend>
                         <div class="mt-6 space-y-6">
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -188,33 +188,33 @@
                                     <input id="topologyAplikasi" name="lampiran" type="radio"
                                         value="Topology Aplikasi"
                                         {{ old('lampiran') == 'Topology Aplikasi' ? 'checked' : '' }}
-                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="topologyAplikasi"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Topology
+                                        class="block text-sm font-medium leading-6 text-gray-900">Topology
                                         Aplikasi</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="perjanjianKerjasama" name="lampiran" type="radio"
                                         value="Perjanjian Kerjasama"
                                         {{ old('lampiran') == 'Perjanjian Kerjasama' ? 'checked' : '' }}
-                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="perjanjianKerjasama"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Perjanjian
+                                        class="block text-sm font-medium leading-6 text-gray-900">Perjanjian
                                         Kerjasama</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="brd" name="lampiran" type="radio" value="BRD"
                                         {{ old('lampiran') == 'BRD' ? 'checked' : '' }}
-                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="brd"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">BRD</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">BRD</label>
                                 </div>
                                 <div class="flex items-center gap-x-3">
                                     <input id="lainnya" name="lampiran" type="radio" value="Lainnya"
                                         {{ old('lampiran') == 'Lainnya' ? 'checked' : '' }}
-                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 dark:bg-gray-900 border-gray-300 text-sky-600 focus:ring-sky-600">
+                                        class="@error('lampiran') is-invalid @enderror h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-600">
                                     <label for="lainnya"
-                                        class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400">Lainnya.....</label>
+                                        class="block text-sm font-medium leading-6 text-gray-900">Lainnya.....</label>
                                 </div>
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                     </fieldset>
                     <div class="mt-6 flex items-center justify-end gap-x-6">
                         <button type="reset"
-                            class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400">Reset</button>
+                            class="text-sm font-semibold leading-6 text-gray-900">Reset</button>
                         <x-primary-button>{{ __('Kirim') }}</x-primary-button>
                     </div>
             </x-card>
