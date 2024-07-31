@@ -211,7 +211,7 @@
                             class="text-sm font-semibold leading-6 text-gray-900 hover:text-red-500 transition-all">Reset</button>
                         <button type="submit"
                             class="text-sm font-semibold leading-6 inline-flex items-center px-3 py-1 bg-blue-600  border border-transparent rounded-md text-white uppercase tracking-widest hover:bg-blue-500 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
-                            name="exportPdf">Export Word</button>
+                            name="exportPdf">Export Docx</button>
                         <x-primary-button>{{ __('Kirim') }}</x-primary-button>
                     </div>
 

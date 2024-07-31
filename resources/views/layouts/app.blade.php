@@ -25,11 +25,11 @@
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
         @endisset
 
         <!-- Page Content -->
@@ -40,75 +40,6 @@
 
     {{-- sweet alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        //message with sweetalert
-        @if (session('success'))
-            Swal.fire({
-                icon: "success",
-                title: "BERHASIL",
-                text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        @elseif (session('error'))
-            Swal.fire({
-                icon: "error",
-                title: "GAGAL!",
-                text: "{{ session('error') }}",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        @endif
-    </script>
-
-    {{-- ip --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ipSourceContainer = document.getElementById('ipSourceContainer');
-            const ipDestinationContainer = document.getElementById('ipDestinationContainer');
-            const portContainer = document.getElementById('portContainer');
-            const addFieldsButton = document.getElementById('addFields');
-
-            addFieldsButton.addEventListener('click', function() {
-                // IP Source
-                const newIpSourceInput = document.createElement('input');
-                newIpSourceInput.type = 'text';
-                newIpSourceInput.name = 'ipSource[]';
-                newIpSourceInput.id = 'ipSource';
-                newIpSourceInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
-                    'focus:border-sky-500',
-                    'focus:ring-sky-500',
-                    'rounded-md', 'shadow-sm'
-                );
-                ipSourceContainer.appendChild(newIpSourceInput);
-
-                // IP Destination
-                const newIpDestinationInput = document.createElement('input');
-                newIpDestinationInput.type = 'text';
-                newIpDestinationInput.name = 'ipDestination[]';
-                newIpDestinationInput.id = 'ipDestination';
-                newIpDestinationInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
-                    'focus:border-sky-500',
-                    'focus:ring-sky-500',
-                    'rounded-md', 'shadow-sm'
-                );
-                ipDestinationContainer.appendChild(newIpDestinationInput);
-
-                // PORT
-                const newPortInput = document.createElement('input');
-                newPortInput.type = 'number';
-                newPortInput.name = 'port[]';
-                newPortInput.id = 'port';
-                newPortInput.classList.add('block', 'w-full', 'mt-5', 'border-gray-300',
-                    'focus:border-sky-500',
-                    'focus:ring-sky-500', 'rounded-md', 'shadow-sm'
-                );
-                portContainer.appendChild(newPortInput);
-            });
-        });
-    </script>
-
 </body>
 
 </html>

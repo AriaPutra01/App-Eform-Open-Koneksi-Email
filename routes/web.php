@@ -23,8 +23,6 @@ Route::group(['prefix' => 'pemohon', 'as' => 'pemohon.'], function () {
     Route::resource('/formKoneksi', PemohonController::class);
     Route::get('/form/export-excel', [PemohonController::class, 'export'])->name('export.excel');
     Route::get('/pemohon/{id}/export-word', [WordExport::class, 'export'])->name('export.word');
-
-
 });
 
 Route::group(['prefix' => 'permohonan', 'as' => 'permohonan.'], function () {

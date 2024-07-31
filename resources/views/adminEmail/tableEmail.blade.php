@@ -8,15 +8,13 @@
     {{-- icon --}}
     <link rel="icon" href="{{ asset('build/image/logobjb.png') }}">
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -30,8 +28,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}">
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- DataTables -->
@@ -43,7 +40,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 </head>
 
@@ -66,7 +62,7 @@
                 {{-- <center>
                 <a href="{{ url('admin/create') }}" class="btn btn-md btn-primary mb-3">Buat Permohonan</a>
                 <a href="/pegawai/cetak_pdf" class="btn btn-md btn-primary mb-3" target="_blank">CETAK PDF</a>
-            </center> --}}
+                </center> --}}
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -83,53 +79,46 @@
                     </thead>
                     <tbody>
                         @forelse ($posts as $post)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $post->nama }}</td>
-                                <td>{{ $post->nama_ibu }}</td>
-                                <td>{{ $post->cabang }}</td>
-                                <td>{{ $post->jabatan }}</td>
-                                <td>{{ $post->no_telp }}</td>
-                                <td>{{ $post->alasan }}</td>
-                                <td>{{ $post->pendaftaran }}</td>
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $post->nama }}</td>
+                            <td>{{ $post->nama_ibu }}</td>
+                            <td>{{ $post->cabang }}</td>
+                            <td>{{ $post->jabatan }}</td>
+                            <td>{{ $post->no_telp }}</td>
+                            <td>{{ $post->alasan }}</td>
+                            <td>{{ $post->pendaftaran }}</td>
 
-                                <td class="text-center">
+                            <td class="text-center">
 
-                                    <a href="{{ route('adminEmail.dataEmail.show', $post->id) }}"
-                                        class="m-2 inline-block bg-gray-500 hover:bg-gray-700 text-white py-1 px-4 rounded">SHOW</a>
-                                    <button
-                                        @click="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $post->id }}')"
-                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                        {{ __('Hapus') }}
-                                    </button>
-                                    <x-modal name="konfirmasiHapusPemohon-{{ $post->id }}" focusable>
-                                        <form method="POST"
-                                            action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}"
-                                            class="p-6">
-                                            @csrf
-                                            @method('DELETE')
-                                            <h2 class="text-lg font-medium text-gray-900">
-                                                {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
-                                            </h2>
-                                            <p class="mt-1 text-sm text-gray-600">
-                                                {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
-                                            </p>
-                                            <div class="mt-6 flex justify-end">
-                                                <x-secondary-button x-on:click="$dispatch('close')">
-                                                    {{ __('Membatalkan') }}
-                                                </x-secondary-button>
-                                                <x-danger-button type="submit">
-                                                    {{ __('Hapus Data') }}
-                                                </x-danger-button>
-                                            </div>
-                                        </form>
-                                    </x-modal>
-                                </td>
-                            </tr>
+                                <a href="{{ route('adminEmail.dataEmail.show', $post->id) }}" class="m-2 inline-block bg-gray-500 hover:bg-gray-700 text-white py-1 px-4 rounded">SHOW</a>
+                                <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'konfirmasiHapusPemohon-{{ $post->id }}')">{{ __('Hapus') }}</x-danger-button>
+                                <x-modal name="konfirmasiHapusPemohon-{{ $post->id }}" focusable>
+                                    <form method="POST" action="{{ route('adminEmail.dataEmail.destroy', $post->id) }}" class="p-6">
+                                        @csrf
+                                        @method('DELETE')
+                                        <h2 class="text-lg font-medium text-gray-900">
+                                            {{ __('Apakah Anda yakin ingin menghapus data ini?') }}
+                                        </h2>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
+                                        </p>
+                                        <div class="mt-6 flex justify-end">
+                                            <x-secondary-button class="mr-6" x-on:click="$dispatch('close')">
+                                                {{ __('Membatalkan') }}
+                                            </x-secondary-button>
+                                            <x-danger-button type="submit">
+                                                {{ __('Hapus Data') }}
+                                            </x-danger-button>
+                                        </div>
+                                    </form>
+                                </x-modal>
+                            </td>
+                        </tr>
                         @empty
-                            <div class="alert alert-danger">
-                                Data Post belum Tersedia.
-                            </div>
+                        <div class="alert alert-danger">
+                            Data Post belum Tersedia.
+                        </div>
                         @endforelse
                     </tbody>
                     <tfoot>

@@ -9,17 +9,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginRequest;
+use Complex\Functions;
+use PhpParser\Node\Expr\FuncCall;
 
 class AuthenticatedSessionController extends Controller
 {
-
+    
     /**
      * Display a listing of the resource.
      */
     public function indexUser(): View
     {
         $pemohons = Pemohon::latest()->paginate(10);
-        return view('admin.tableKoneksi', compact("pemohons"));
+        return view('dashboard', compact("pemohons"));
     }
 
     /**

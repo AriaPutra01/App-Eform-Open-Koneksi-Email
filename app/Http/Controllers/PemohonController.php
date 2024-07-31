@@ -50,7 +50,7 @@ class PemohonController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->has('exportPdf')) {
+        if ($request->has('word')) {
 
             // 1. Fetch the data from your database based on the ID
             // 1. Get the input data

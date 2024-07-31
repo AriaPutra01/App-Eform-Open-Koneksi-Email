@@ -54,7 +54,7 @@
                                             {{ __('Setelah data ini dihapus, semua sumber daya dan datanya akan dihapus secara permanen.') }}
                                         </p>
                                         <div class="mt-6 flex justify-end">
-                                            <x-secondary-button x-on:click="$dispatch('close')">
+                                            <x-secondary-button class="mr-6" x-on:click="$dispatch('close')">
                                                 {{ __('Membatalkan') }}
                                             </x-secondary-button>
                                             <x-danger-button type="submit">
